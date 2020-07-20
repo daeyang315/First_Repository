@@ -65,7 +65,7 @@ class PID
 	
 	double dispKp;				// * we'll hold on to the tuning parameters in user-entered 
 	double dispKi;				//   format for display purposes
-	double dispKd;				//
+	double dispKd;				
     
 	double kp;                  // * (P)roportional Tuning Parameter
     double ki;                  // * (I)ntegral Tuning Parameter
