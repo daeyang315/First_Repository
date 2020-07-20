@@ -13,9 +13,9 @@ double base_motor_speed = 140;
 double setpoint = 0;
 double input;
 double output;
-double kp = 50;
+double kp = 1;
 double ki = 0;
-double kd = 3;
+double kd = 0;
 
 PID controller(&input, &output, &setpoint, kp, ki, kd, DIRECT);
 
@@ -28,18 +28,22 @@ void setup() {
  
 
  
- controller.SetOutputLimits(-20,20);
- controller.SetSampleTime(5);
+ controller.SetOutputLimits(-115,115);
+ controller.SetSampleTime(50);
  controller.SetMode(1);
 }
 
 void loop() {
   sensor.update();
+  sensor.get_ang_vel('z');
   input = sensor.get_ang_vel('z');
+  Serial.println("input: "); Serial.print(input );
   sensor.update();
 
   controller.Compute();
-  raw_motor_control(base_motor_speed + output, base_motor_speed - output);
+  raw_motor_control(base_motor_speed - output, base_motor_speed + output);
+  Serial.print ("output: "); Serial.print(output );
+  
   
   
   
